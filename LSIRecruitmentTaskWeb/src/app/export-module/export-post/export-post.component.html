@@ -1,0 +1,37 @@
+<div class="container">
+  <p-toast position="bottom-right"></p-toast>
+  <h2>Dodaj eksport</h2>
+  <div class="item">
+    <p-iftalabel>
+      <input [(ngModel)]="exportName" autocomplete="off" id="exportName" pInputText/>
+      <label for="exportName">Nazwa eksportu:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-iftalabel>
+      <p-datepicker [(ngModel)]="exportDate" [hourFormat]="String(24)" [showButtonBar]="true" [showTime]="true"
+                    inputId="exportDate"></p-datepicker>
+      <label for="exportDate">Data:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-iftalabel>
+      <input [(ngModel)]="exportUser" autocomplete="off" id="exportUser" pInputText/>
+      <label for="exportUser">Użytkownik:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-iftalabel>
+      <p-autocomplete (completeMethod)="filterLocations($event)" [(ngModel)]="exportLocation"
+                      [dropdown]="true" [suggestions]="locations"
+                      [virtualScrollItemSize]="50" [virtualScroll]="true" inputId="exportLocation"
+                      placeholder="Wybierz lokalizację"></p-autocomplete>
+      <label for="exportLocation">Lokalizacja:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-button (click)="post()" class="item" icon="pi pi-check" iconPos="top" label="Dodaj" size="small"/>
+  </div>
+
+</div>
+

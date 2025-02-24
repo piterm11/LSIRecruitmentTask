@@ -1,0 +1,6 @@
+<div class="container">
+  <app-export-search (filter)="tableComponent.searchExports($event)"></app-export-search>
+  <app-export-post (entryAdded)="tableComponent.searchExports()"></app-export-post>
+</div>
+<app-export-table #tableComponent></app-export-table>
+<router-outlet/>

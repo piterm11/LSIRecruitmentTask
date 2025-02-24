@@ -1,0 +1,6 @@
+@LSIRecruitmentTask_HostAddress = http://localhost:5130
+
+GET {{LSIRecruitmentTask_HostAddress}}/api/exports
+Accept: application/json
+
+###

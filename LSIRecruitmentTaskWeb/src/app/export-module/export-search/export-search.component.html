@@ -1,0 +1,27 @@
+<div class="container">
+  <h2>Filtruj eksporty</h2>
+  <div class="item">
+    <p-iftalabel>
+      <p-datepicker [(ngModel)]="fromDate" [showButtonBar]="true" inputId="fromDate"></p-datepicker>
+      <label for="fromDate">Od:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-iftalabel>
+      <p-datepicker [(ngModel)]="toDate" [showButtonBar]="true" inputId="toDate"></p-datepicker>
+      <label for="toDate">Do:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-iftalabel>
+      <p-autocomplete (completeMethod)="filterLocations($event)" [(ngModel)]="selectedLocation"
+                      [dropdown]="true" [suggestions]="locations"
+                      [virtualScrollItemSize]="50" [virtualScroll]="true" inputId="locations"
+                      placeholder="Wybierz lokalizację"></p-autocomplete>
+      <label for="locations">Lokalizacja:</label>
+    </p-iftalabel>
+  </div>
+  <div class="item">
+    <p-button (click)="filterExports()" class="item" icon="pi pi-search" iconPos="top" label="Szukaj" size="small"/>
+  </div>
+</div>
