@@ -7,6 +7,8 @@ import {Button} from 'primeng/button';
 import {IftaLabel} from 'primeng/iftalabel';
 import {DatePicker} from 'primeng/datepicker';
 import {AutoComplete} from 'primeng/autocomplete';
+import {Toast} from 'primeng/toast';
+import {MessageService} from 'primeng/api';
 
 @Component({
   selector: 'app-export-search',
@@ -17,10 +19,12 @@ import {AutoComplete} from 'primeng/autocomplete';
     Button,
     IftaLabel,
     DatePicker,
-    AutoComplete
+    AutoComplete,
+    Toast
   ],
   templateUrl: './export-search.component.html',
-  styleUrl: './export-search.component.css'
+  styleUrl: './export-search.component.css',
+  providers: [MessageService]
 })
 export class ExportSearchComponent implements OnInit {
   fromDate?: Date;
@@ -33,7 +37,9 @@ export class ExportSearchComponent implements OnInit {
     selectedLocation?: string;
   }>();
 
-  constructor(private exportService: ExportService) {
+  constructor(
+    private exportService: ExportService,
+    private messageService: MessageService) {
   }
 
   ngOnInit(): void {
@@ -41,6 +47,14 @@ export class ExportSearchComponent implements OnInit {
   }
 
   filterExports(): void {
+    if (this.fromDate && this.toDate && this.fromDate > this.toDate) {
+      this.messageService.add({
+        severity: 'error',
+        summary: 'Błąd',
+        detail: 'Data do nie może być wcześniej niż data od.'
+      });
+      return;
+    }
     this.filter.emit({fromDate: this.fromDate, toDate: this.toDate, selectedLocation: this.selectedLocation});
   }
 
